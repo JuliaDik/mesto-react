@@ -2,15 +2,15 @@ import React from 'react';
 
 function Main() {
   function handleEditAvatarClick() {
-    document.querySelector('.popup_type_avatar').classList.add('popup_opened');
+    document.querySelector('.popup_type_avatar-edit').classList.add('popup_opened');
   }
   
   function handleEditProfileClick() {
-    document.querySelector('.popup_type_edit').classList.add('popup_opened');
+    document.querySelector('.popup_type_profile-edit').classList.add('popup_opened');
   }
   
   function handleAddPlaceClick() { 
-    document.querySelector('.popup_type_add').classList.add('popup_opened');
+    document.querySelector('.popup_type_card-add').classList.add('popup_opened');
   }
 
   return (

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
+import PopupWithForm from './PopupWithForm';
 
 function App() {
   return (
@@ -9,80 +10,76 @@ function App() {
       <Header/>
       <Main/>
       <Footer/>
-      <div className="popup popup_type_edit">
-        <div className="popup__container">
-          <button
-            className="popup__close-button"
-            type="button"
-            aria-label="кнопка-закрыть">
-          </button>
-          <form className="popup__form" name="profile-form" novalidate>
-            <h3 className="popup__title">Редактировать профиль</h3>
-            <input
-              className="popup__input popup__input_type_name"
-              type="text"
-              id="name-input"
-              name="name"
-              placeholder="Имя"
-              minlength="2"
-              maxlength="40"
-              required/>
-            <span className="popup__error name-input-error"></span>
-            <input
-              className="popup__input popup__input_type_about"
-              type="text"
-              id="about-input"
-              name="about"
-              placeholder="О себе"
-              minlength="2"
-              maxlength="200"
-              required/>
-            <span className="popup__error about-input-error"></span>
-            <button
-              className="popup__submit-button"
-              type="submit"
-              aria-label="кнопка-сохранить">
-              Сохранить
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className="popup popup_type_add">
-        <div className="popup__container">
-          <button
-            className="popup__close-button"
-            type="button"
-            aria-label="кнопка-закрыть">
-          </button>
-          <form className="popup__form" name="card-form" novalidate>
-            <h3 className="popup__title">Новое место</h3>
-            <input
-              className="popup__input popup__input_type_title"
-              type="text"
-              id="title-input"
-              name="name"
-              placeholder="Название"
-              minlength="2"
-              maxlength="30"
-              required/>
-            <span className="popup__error title-input-error"></span>
-            <input
-              className="popup__input popup__input_type_link"
-              type="url"
-              id="link-input"
-              name="link"
-              placeholder="Ссылка на картинку"
-              required/>
-            <span className="popup__error link-input-error"></span>
-            <button
-              className="popup__submit-button"
-              type="submit"
-              aria-label="кнопка-сохранить">
-              Создать
-            </button>
-          </form>
-        </div>
-      </div>
+
+      <PopupWithForm
+        name="profile-edit"
+        title="Редактировать профиль"
+        buttonText="Сохранить">
+          <input
+            className="popup__input popup__input_type_name"
+            type="text"
+            id="name-input"
+            name="name"
+            placeholder="Имя"
+            minlength="2"
+            maxlength="40"
+            required/>
+          <span className="popup__error name-input-error"></span>
+          <input
+            className="popup__input popup__input_type_about"
+            type="text"
+            id="about-input"
+            name="about"
+            placeholder="О себе"
+            minlength="2"
+            maxlength="200"
+            required/>
+          <span className="popup__error about-input-error"></span>
+      </PopupWithForm>
+
+      <PopupWithForm
+        name="card-add"
+        title="Новое место"
+        buttonText="Создать">
+          <input
+            className="popup__input popup__input_type_title"
+            type="text"
+            id="title-input"
+            name="name"
+            placeholder="Название"
+            minlength="2"
+            maxlength="30"
+            required/>
+          <span className="popup__error title-input-error"></span>
+          <input
+            className="popup__input popup__input_type_link"
+            type="url"
+            id="link-input"
+            name="link"
+            placeholder="Ссылка на картинку"
+            required/>
+          <span className="popup__error link-input-error"></span>
+      </PopupWithForm>
+
+      <PopupWithForm
+        name="card-delete"
+        title="Вы уверены?"
+        buttonText="Да">
+      </PopupWithForm>
+
+      <PopupWithForm
+        name="avatar-edit"
+        title="Обновить аватар"
+        buttonText="Сохранить">
+          <input
+            className="popup__input popup__input_type_link"
+            type="url"
+            id="avatar-input"
+            name="avatar"
+            placeholder="Ссылка на картинку"
+            required/>
+          <span className="popup__error avatar-input-error"></span>
+      </PopupWithForm>
       <div className="popup popup_type_image">
         <figure className="popup__image-container">
           <button
@@ -93,8 +90,8 @@ function App() {
           <img className="popup__image" src="#" alt="#"/>
           <figcaption className="popup__caption"></figcaption>
         </figure>
-      </div>
-      <div className="popup popup_type_delete">
+        </div>
+        <div className="popup popup_type_delete">
         <div className="popup__container">
           <button
             className="popup__close-button"
@@ -108,32 +105,6 @@ function App() {
               type="submit"
               aria-label="кнопка-сохранить">
               Да
-            </button>
-          </form>
-        </div>
-      </div>
-      <div className="popup popup_type_avatar">
-        <div className="popup__container">
-          <button
-            className="popup__close-button"
-            type="button"
-            aria-label="кнопка-закрыть">
-          </button>
-          <form className="popup__form" name="avatar-form">
-            <h3 className="popup__title">Обновить аватар</h3>
-            <input
-              className="popup__input popup__input_type_link"
-              type="url"
-              id="avatar-input"
-              name="avatar"
-              placeholder="Ссылка на картинку"
-              required/>
-            <span className="popup__error avatar-input-error"></span>
-            <button
-              className="popup__submit-button"
-              type="submit"
-              aria-label="кнопка-сохранить">
-              Сохранить
             </button>
           </form>
         </div>
