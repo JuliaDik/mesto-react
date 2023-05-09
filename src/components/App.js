@@ -3,6 +3,7 @@ import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
 import PopupWithForm from './PopupWithForm';
+import ImagePopup from './ImagePopup';
 
 function App() {
   return (
@@ -80,35 +81,7 @@ function App() {
             required/>
           <span className="popup__error avatar-input-error"></span>
       </PopupWithForm>
-      <div className="popup popup_type_image">
-        <figure className="popup__image-container">
-          <button
-            className="popup__close-button"
-            type="button"
-            aria-label="кнопка-закрыть">
-          </button>
-          <img className="popup__image" src="#" alt="#"/>
-          <figcaption className="popup__caption"></figcaption>
-        </figure>
-        </div>
-        <div className="popup popup_type_delete">
-        <div className="popup__container">
-          <button
-            className="popup__close-button"
-            type="button"
-            aria-label="кнопка-закрыть">
-          </button>
-          <form className="popup__form" name="delete-form">
-            <h3 className="popup__title popup__title_type_delete">Вы уверены?</h3>
-            <button
-              className="popup__submit-button"
-              type="submit"
-              aria-label="кнопка-сохранить">
-              Да
-            </button>
-          </form>
-        </div>
-      </div>
+      <ImagePopup/>
       <template className="card-template">
         <li className="card">
           <button
