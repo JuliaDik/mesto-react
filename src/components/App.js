@@ -1,48 +1,14 @@
 import React from 'react';
-import logo from './images/logo.svg';
+import Header from './Header';
+import Main from './Main';
+import Footer from './Footer';
 
 function App() {
   return (
     <div className="page">
-      <header className="header">
-        <img
-          className="header__logo"
-          src={logo}
-          alt="Логотип"/>
-      </header>
-      <main className="content">
-        <section className="profile" aria-label="профиль пользователя">
-          <div className="profile__avatar-container">
-            <img
-              className="profile__avatar-image"
-              src="#"
-              alt="Аватар пользователя"/>
-            <div className="profile__avatar-edit"></div>
-          </div>
-          <div className="profile__info">
-            <h1 className="profile__name"></h1>
-            <button
-              className="profile__edit-button"
-              type="button"
-              aria-label="кнопка-редактировать"
-              title = "Редактировать">
-            </button>
-            <p className="profile__about"></p>
-          </div>
-          <button
-            className="profile__add-button"
-            type="button"
-            aria-label="кнопка-добавить"
-            title = "Добавить карточку">
-          </button>
-        </section>
-        <section className="gallery" aria-label="карточки с фотографиями">
-          <ul className="cards-container"></ul>
-        </section>
-      </main>
-      <footer className="footer">
-        <p className="footer__copyright">© 2023 Mesto Russia</p>
-      </footer>
+      <Header/>
+      <Main/>
+      <Footer/>
       <div className="popup popup_type_edit">
         <div className="popup__container">
           <button
