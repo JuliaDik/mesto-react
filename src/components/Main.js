@@ -1,17 +1,20 @@
 import React from 'react';
 import api from '../utils/Api';
+import Card from './Card.js';
 
 function Main(props) {
   const [userAvatar, setUserAvatar] = React.useState();
   const [userName, setUserName] = React.useState();
   const [userDescription, setUserDescription] = React.useState();
+  const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
+    Promise.all([api.getUserInfo(), api.getCards()])
+      .then(([userData, cards]) => {
         setUserAvatar(userData.avatar);
         setUserName(userData.name);
         setUserDescription(userData.about);
+        setCards(cards);
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -51,7 +54,11 @@ function Main(props) {
         </button>
       </section>
       <section className="gallery" aria-label="карточки с фотографиями">
-        <ul className="cards-container"></ul>
+        <ul className="cards-container">
+          {cards.map((card) => (
+            <Card name={card.name} link={card.link} likes={card.likes.length}/>
+          ))}
+        </ul>
       </section>
     </main>
   )

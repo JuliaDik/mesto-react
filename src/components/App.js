@@ -30,11 +30,15 @@ function App() {
 
   return (
     <div className="page">
+
       <Header/>
+
       <Main
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
-        onAddPlace={handleAddPlaceClick}/>
+        onAddPlace={handleAddPlaceClick}
+      />
+
       <Footer/>
 
       <PopupWithForm
@@ -116,27 +120,6 @@ function App() {
 
       <ImagePopup onClose={closeAllPopups}/>
       
-      <template className="card-template">
-        <li className="card">
-          <button
-            className="card__delete-button"
-            type="button"
-            aria-label="кнопка-удалить">
-          </button>
-          <img className="card__image" src="#" alt="#"/>
-          <div className="card__info">
-            <h2 className="card__title"></h2>
-            <div className="card__like-wrapper">
-              <button
-                className="card__like-button"
-                type="button"
-                aria-label="кнопка-нравится">
-              </button>
-              <span className="card__like-counter"></span>
-            </div>
-          </div>
-        </li>
-      </template>
     </div>
   );
 }
