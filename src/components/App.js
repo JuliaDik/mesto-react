@@ -60,8 +60,8 @@ function App() {
             id="name-input"
             name="name"
             placeholder="Имя"
-            minlength="2"
-            maxlength="40"
+            minLength="2"
+            maxLength="40"
             required/>
           <span className="popup__error name-input-error"></span>
           <input
@@ -70,8 +70,8 @@ function App() {
             id="about-input"
             name="about"
             placeholder="О себе"
-            minlength="2"
-            maxlength="200"
+            minLength="2"
+            maxLength="200"
             required/>
           <span className="popup__error about-input-error"></span>
       </PopupWithForm>
@@ -88,8 +88,8 @@ function App() {
             id="title-input"
             name="name"
             placeholder="Название"
-            minlength="2"
-            maxlength="30"
+            minLength="2"
+            maxLength="30"
             required/>
           <span className="popup__error title-input-error"></span>
           <input
