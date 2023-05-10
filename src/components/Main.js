@@ -19,7 +19,7 @@ function Main(props) {
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
       })
-  })
+  }) 
 
   return (
     <main className="content">
@@ -56,7 +56,7 @@ function Main(props) {
       <section className="gallery" aria-label="карточки с фотографиями">
         <ul className="cards-container">
           {cards.map((card) => (
-            <Card name={card.name} link={card.link} likes={card.likes.length}/>
+            <Card card={card} onCardClick={props.onCardClick}/>
           ))}
         </ul>
       </section>
