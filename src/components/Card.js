@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 
 function Card(props) {
   function handleClick() {
@@ -10,8 +10,8 @@ function Card(props) {
       <button
         className="card__delete-button"
         type="button"
-        aria-label="кнопка-удалить">
-      </button>
+        aria-label="кнопка-удалить"
+      ></button>
       <img
         className="card__image"
         src={props.card.link}
@@ -24,8 +24,8 @@ function Card(props) {
           <button
             className="card__like-button"
             type="button"
-            aria-label="кнопка-нравится">
-          </button>
+            aria-label="кнопка-нравится"
+          ></button>
           <span className="card__like-counter">{props.card.likes.length}</span>
         </div>
       </div>

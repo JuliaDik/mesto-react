@@ -1,6 +1,6 @@
-import React from 'react';
-import api from '../utils/Api';
-import Card from './Card.js';
+import React from "react";
+import api from "../utils/Api";
+import Card from "./Card.js";
 
 function Main(props) {
   const [userAvatar, setUserAvatar] = React.useState();
@@ -18,8 +18,8 @@ function Main(props) {
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
-      })
-  }, []); 
+      });
+  }, []);
 
   return (
     <main className="content">
@@ -28,11 +28,12 @@ function Main(props) {
           <img
             className="profile__avatar-image"
             src={userAvatar}
-            alt="Аватар пользователя"/>
+            alt="Аватар пользователя"
+          />
           <div
             className="profile__avatar-edit"
-            onClick={props.onEditAvatar}>
-          </div>
+            onClick={props.onEditAvatar}
+          ></div>
         </div>
         <div className="profile__info">
           <h1 className="profile__name">{userName}</h1>
@@ -40,28 +41,28 @@ function Main(props) {
             className="profile__edit-button"
             type="button"
             aria-label="кнопка-редактировать"
-            title = "Редактировать"
-            onClick={props.onEditProfile}>
-          </button>
+            title="Редактировать"
+            onClick={props.onEditProfile}
+          ></button>
           <p className="profile__about">{userDescription}</p>
         </div>
         <button
           className="profile__add-button"
           type="button"
           aria-label="кнопка-добавить"
-          title = "Добавить карточку"
-          onClick={props.onAddPlace}>
-        </button>
+          title="Добавить карточку"
+          onClick={props.onAddPlace}
+        ></button>
       </section>
       <section className="gallery" aria-label="карточки с фотографиями">
         <ul className="cards-container">
           {cards.map((card) => (
-            <Card card={card} key={card._id} onCardClick={props.onCardClick}/>
+            <Card card={card} key={card._id} onCardClick={props.onCardClick} />
           ))}
         </ul>
       </section>
     </main>
-  )
+  );
 }
 
 export default Main;
