@@ -6,16 +6,36 @@ import PopupWithForm from './PopupWithForm';
 import ImagePopup from './ImagePopup';
 
 function App() {
+  const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
+  const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
+  const [isAddPlacePopupOpen, setIsAddPlacePopupOpen] = React.useState(false);
+
+  function handleEditAvatarClick() {
+    setIsEditAvatarPopupOpen(true);
+  }
+  
+  function handleEditProfileClick() {
+    setIsEditProfilePopupOpen(true);
+  }
+  
+  function handleAddPlaceClick() { 
+    setIsAddPlacePopupOpen(true);
+  }
+
   return (
     <div className="page">
       <Header/>
-      <Main/>
+      <Main
+        onEditAvatar={handleEditAvatarClick}
+        onEditProfile={handleEditProfileClick}
+        onAddPlace={handleAddPlaceClick}/>
       <Footer/>
 
       <PopupWithForm
         name="profile-edit"
         title="Редактировать профиль"
-        buttonText="Сохранить">
+        buttonText="Сохранить"
+        isOpen={isEditProfilePopupOpen}>
           <input
             className="popup__input popup__input_type_name"
             type="text"
@@ -41,7 +61,8 @@ function App() {
       <PopupWithForm
         name="card-add"
         title="Новое место"
-        buttonText="Создать">
+        buttonText="Создать"
+        isOpen={isAddPlacePopupOpen}>
           <input
             className="popup__input popup__input_type_title"
             type="text"
@@ -71,7 +92,8 @@ function App() {
       <PopupWithForm
         name="avatar-edit"
         title="Обновить аватар"
-        buttonText="Сохранить">
+        buttonText="Сохранить"
+        isOpen={isEditAvatarPopupOpen}>
           <input
             className="popup__input popup__input_type_link"
             type="url"
