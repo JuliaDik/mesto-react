@@ -22,6 +22,12 @@ function App() {
     setIsAddPlacePopupOpen(true);
   }
 
+  function closeAllPopups() { 
+    setIsEditAvatarPopupOpen(false);
+    setIsEditProfilePopupOpen(false);
+    setIsAddPlacePopupOpen(false);
+  }
+
   return (
     <div className="page">
       <Header/>
@@ -35,7 +41,8 @@ function App() {
         name="profile-edit"
         title="Редактировать профиль"
         buttonText="Сохранить"
-        isOpen={isEditProfilePopupOpen}>
+        isOpen={isEditProfilePopupOpen}
+        onClose={closeAllPopups}>
           <input
             className="popup__input popup__input_type_name"
             type="text"
@@ -62,7 +69,8 @@ function App() {
         name="card-add"
         title="Новое место"
         buttonText="Создать"
-        isOpen={isAddPlacePopupOpen}>
+        isOpen={isAddPlacePopupOpen}
+        onClose={closeAllPopups}>
           <input
             className="popup__input popup__input_type_title"
             type="text"
@@ -86,14 +94,16 @@ function App() {
       <PopupWithForm
         name="card-delete"
         title="Вы уверены?"
-        buttonText="Да">
+        buttonText="Да"
+        onClose={closeAllPopups}>
       </PopupWithForm>
 
       <PopupWithForm
         name="avatar-edit"
         title="Обновить аватар"
         buttonText="Сохранить"
-        isOpen={isEditAvatarPopupOpen}>
+        isOpen={isEditAvatarPopupOpen}
+        onClose={closeAllPopups}>
           <input
             className="popup__input popup__input_type_link"
             type="url"
@@ -103,7 +113,9 @@ function App() {
             required/>
           <span className="popup__error avatar-input-error"></span>
       </PopupWithForm>
-      <ImagePopup/>
+
+      <ImagePopup onClose={closeAllPopups}/>
+      
       <template className="card-template">
         <li className="card">
           <button
