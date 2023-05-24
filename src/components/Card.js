@@ -17,6 +17,10 @@ function Card(props) {
     props.onCardLike(props.card);
   }
 
+  function handleDeleteClick() {
+    props.onCardDelete(props.card);
+  }
+
   return (
     <li className="card">
       {isOwn && (
@@ -24,6 +28,7 @@ function Card(props) {
           className="card__delete-button"
           type="button"
           aria-label="кнопка-удалить"
+          onClick={handleDeleteClick}
         />
       )}
       <img
