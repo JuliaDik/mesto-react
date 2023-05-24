@@ -17,6 +17,15 @@ function Main(props) {
       });
   }, []);
 
+  function handleCardLike(card) {
+    const isLiked = card.likes.some(i => i._id === currentUser._id);
+
+    api.toggleLike(card._id, isLiked)
+      .then((newCard) => {
+        setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+    });
+  }
+
   return (
     <main className="content">
       <section className="profile" aria-label="профиль пользователя">
@@ -53,7 +62,12 @@ function Main(props) {
       <section className="gallery" aria-label="карточки с фотографиями">
         <ul className="cards-container">
           {cards.map((card) => (
-            <Card card={card} key={card._id} onCardClick={props.onCardClick} />
+            <Card
+              card={card}
+              key={card._id}
+              onCardClick={props.onCardClick}
+              onCardLike={handleCardLike}
+            />
           ))}
         </ul>
       </section>
