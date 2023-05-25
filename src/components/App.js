@@ -3,6 +3,7 @@ import Header from "./Header";
 import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
+import EditProfilePopup from "./EditProfilePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -47,6 +48,17 @@ function App() {
     setSelectedCard(null);
   }
 
+  function handleUpdateUser({ name, about }) {
+    api.patchUserInfo({ name, about })
+    .then((userData) => {
+      setCurrentUser(userData);
+      closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -79,36 +91,11 @@ function App() {
           <span className="popup__error avatar-input-error"></span>
         </PopupWithForm>
 
-        <PopupWithForm
-          name="profile-edit"
-          title="Редактировать профиль"
-          buttonText="Сохранить"
+        <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            className="popup__input popup__input_type_name"
-            type="text"
-            id="name-input"
-            name="name"
-            placeholder="Имя"
-            minLength="2"
-            maxLength="40"
-            required
-          />
-          <span className="popup__error name-input-error"></span>
-          <input
-            className="popup__input popup__input_type_about"
-            type="text"
-            id="about-input"
-            name="about"
-            placeholder="О себе"
-            minLength="2"
-            maxLength="200"
-            required
-          />
-          <span className="popup__error about-input-error"></span>
-        </PopupWithForm>
+          onUpdateUser={handleUpdateUser}
+        />
 
         <PopupWithForm
           name="card-add"
