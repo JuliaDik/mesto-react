@@ -26,3 +26,6 @@ Mesto - сервис для публикации фотографий.
   - [ ] хуки (useState, useEffect);
 - Работа с API;
 - Методология БЭМ + файловая структура Nested БЭМ;
+
+## Проект
+[Открыть сайт](https://juliadik.github.io/mesto-react/)
