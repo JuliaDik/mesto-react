@@ -6,9 +6,9 @@ function EditAvatarPopup(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  
+
     props.onUpdateAvatar({
-      avatar: inputRef.current.value
+      avatar: inputRef.current.value,
     });
   }
 
@@ -21,18 +21,18 @@ function EditAvatarPopup(props) {
       onClose={props.onClose}
       onSubmit={handleSubmit}
     >
-    <input
-      className="popup__input popup__input_type_link"
-      type="url"
-      id="avatar-input"
-      name="avatar"
-      placeholder="Ссылка на картинку"
-      required
-      ref={inputRef}
-    />
-    <span className="popup__error avatar-input-error"></span>
+      <input
+        className="popup__input popup__input_type_link"
+        type="url"
+        id="avatar-input"
+        name="avatar"
+        placeholder="Ссылка на картинку"
+        required
+        ref={inputRef}
+      />
+      <span className="popup__error avatar-input-error"></span>
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditAvatarPopup;

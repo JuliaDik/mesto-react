@@ -2,8 +2,8 @@ import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
 function AddPlacePopup(props) {
-  const [name, setName] = React.useState('');
-  const [link, setLink] = React.useState('');
+  const [name, setName] = React.useState("");
+  const [link, setLink] = React.useState("");
 
   function handleNameChange(evt) {
     setName(evt.target.value);
@@ -15,14 +15,14 @@ function AddPlacePopup(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  
+
     props.onAddPlace({
       name,
-      link
+      link,
     });
 
-    setName('');
-    setLink('');
+    setName("");
+    setLink("");
   }
 
   return (
@@ -59,7 +59,7 @@ function AddPlacePopup(props) {
       />
       <span className="popup__error link-input-error"></span>
     </PopupWithForm>
-  )
+  );
 }
 
 export default AddPlacePopup;

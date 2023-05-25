@@ -1,11 +1,11 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function EditProfilePopup(props) {
   const currentUser = React.useContext(CurrentUserContext);
-  const [name, setName] = React.useState('');
-  const [description, setDescription] = React.useState('');
+  const [name, setName] = React.useState("");
+  const [description, setDescription] = React.useState("");
 
   React.useEffect(() => {
     setName(currentUser.name);
@@ -22,7 +22,7 @@ function EditProfilePopup(props) {
 
   function handleSubmit(evt) {
     evt.preventDefault();
-  
+
     props.onUpdateUser({
       name,
       about: description,
@@ -65,7 +65,7 @@ function EditProfilePopup(props) {
       />
       <span className="popup__error about-input-error"></span>
     </PopupWithForm>
-  )
+  );
 }
 
 export default EditProfilePopup;

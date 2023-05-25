@@ -8,7 +8,7 @@ import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
-import { CurrentUserContext } from '../contexts/CurrentUserContext';
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
   const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
@@ -19,18 +19,9 @@ function App() {
   const [cards, setCards] = React.useState([]);
 
   React.useEffect(() => {
-    api.getUserInfo()
-      .then((userData) => {
+    Promise.all([api.getUserInfo(), api.getCards()])
+      .then(([userData, cards]) => {
         setCurrentUser(userData);
-      })
-      .catch((err) => {
-        console.log(`Ошибка: ${err}`);
-      });
-  }, []);
-
-  React.useEffect(() => {
-    api.getCards()
-      .then((cards) => {
         setCards(cards);
       })
       .catch((err) => {
@@ -63,32 +54,34 @@ function App() {
 
   function handleUpdateUser({ name, about }) {
     api.patchUserInfo({ name, about })
-    .then((userData) => {
-      setCurrentUser(userData);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    });
+      .then((userData) => {
+        setCurrentUser(userData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
   }
 
   function handleUpdateAvatar({ avatar }) {
     api.patchAvatar({ avatar })
-    .then((userData) => {
-      setCurrentUser(userData);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    });
+      .then((userData) => {
+        setCurrentUser(userData);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i._id === currentUser._id);
 
     api.toggleLike(card._id, isLiked)
       .then((newCard) => {
-        setCards((cards) => cards.map((c) => c._id === card._id ? newCard : c));
+        setCards((cards) =>
+          cards.map((c) => (c._id === card._id ? newCard : c))
+        );
       })
       .catch((err) => {
         console.log(`Ошибка: ${err}`);
@@ -107,13 +100,13 @@ function App() {
 
   function handleAddPlaceSubmit({ name, link }) {
     api.postCard({ name, link })
-    .then((newCard) => {
-      setCards([newCard, ...cards]);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(`Ошибка: ${err}`);
-    });
+      .then((newCard) => {
+        setCards([newCard, ...cards]);
+        closeAllPopups();
+      })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
   }
 
   return (
