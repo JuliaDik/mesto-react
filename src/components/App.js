@@ -4,6 +4,7 @@ import Main from "./Main";
 import Footer from "./Footer";
 import PopupWithForm from "./PopupWithForm";
 import EditProfilePopup from "./EditProfilePopup";
+import EditAvatarPopup from "./EditAvatarPopup";
 import ImagePopup from "./ImagePopup";
 import api from "../utils/Api";
 import { CurrentUserContext } from '../contexts/CurrentUserContext';
@@ -59,6 +60,17 @@ function App() {
     });
   }
 
+  function handleUpdateAvatar({ avatar }) {
+    api.patchAvatar({ avatar })
+    .then((userData) => {
+      setCurrentUser(userData);
+      closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+    });
+  }
+
   return (
     <div className="page">
       <CurrentUserContext.Provider value={currentUser}>
@@ -73,23 +85,11 @@ function App() {
 
         <Footer />
 
-        <PopupWithForm
-          name="avatar-edit"
-          title="Обновить аватар"
-          buttonText="Сохранить"
+        <EditAvatarPopup
           isOpen={isEditAvatarPopupOpen}
           onClose={closeAllPopups}
-        >
-          <input
-            className="popup__input popup__input_type_link"
-            type="url"
-            id="avatar-input"
-            name="avatar"
-            placeholder="Ссылка на картинку"
-            required
-          />
-          <span className="popup__error avatar-input-error"></span>
-        </PopupWithForm>
+          onUpdateAvatar={handleUpdateAvatar}
+        />
 
         <EditProfilePopup
           isOpen={isEditProfilePopupOpen}
